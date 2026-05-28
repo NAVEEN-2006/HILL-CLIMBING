@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name:             </h3>
-<h3>Register Number:             </h3>
+<h3>Name: NAVEEN KUMAR S</h3>
+<h3>Register Number: 212223040129 </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -59,3 +59,64 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
+
+## Program: 
+
+```python
+#!/usr/bin/env python
+# coding: utf-8
+
+import random
+import string
+
+def generate_random_solution(answer):
+    l = len(answer)  
+    return [random.choice(string.printable) for _ in range(l)]
+
+def evaluate(solution, answer):
+    print(solution)
+    target = list(answer)
+    diff = 0
+    for i in range(len(target)):
+        s = solution[i]
+        t = target[i]
+        diff += abs(ord(s) - ord(t))  
+    return diff
+
+def mutate_solution(solution):
+    ind = random.randint(0, len(solution) - 1)
+    solution[ind] = random.choice(string.printable)
+    return solution
+
+def SimpleHillClimbing(max_iterations=15):
+    answer = "Artificial Intelligence"
+    best = generate_random_solution(answer)
+    best_score = evaluate(best, answer)
+    iteration = 0
+
+    while iteration < max_iterations:
+        print("Iteration:", iteration+1, " Score:", best_score, " Solution:", "".join(best))  
+        if best_score == 0:
+            break
+        new_solution = mutate_solution(list(best))
+        score = evaluate(new_solution, answer)   
+        if score < best_score:
+            best = new_solution
+            best_score = score
+        iteration += 1
+    
+    print("Final Result after", iteration, "iterations ->", "".join(best), "with score:", best_score)
+
+# Run algorithm with 15 iterations
+SimpleHillClimbing(15)
+
+
+```
+
+## Output:
+<img width="795" height="690" alt="image" src="https://github.com/user-attachments/assets/9bd8f351-62d6-4a7a-854e-13c338823c58" />
+<img width="794" height="773" alt="image" src="https://github.com/user-attachments/assets/dac6f353-170f-4b02-b79b-bd34d87240ac" />
+
+
+## Result:
+Thus the Hill Climbing Algorithm has been verified successfully.
